@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="no" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lars Gimse — Prosjekter</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Glassmorphism & Custom Gradient Borders */
+        .card-glow {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-glow:hover {
+            transform: translateY(-4px);
+        }
+        
+        /* Background Glow Blobs */
+        .blob {
+            position: absolute;
+            filter: blur(90px);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white relative overflow-x-hidden dark:bg-slate-950 dark:text-slate-100 bg-slate-50 text-slate-800 transition-colors duration-300">
+
+    <!-- Ambient Background Lighting -->
+    <div class="blob w-96 h-96 bg-sky-500 top-[-100px] left-[-100px]"></div>
+    <div class="blob w-96 h-96 bg-emerald-500 bottom-[-100px] right-[-100px]"></div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-12 md:py-20 w-full flex-grow flex flex-col justify-center">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+                Lars Gimse
+            </h1>
+            
+            <!-- Social / GitHub Links & Theme Toggle -->
+            <div class="flex items-center justify-center gap-4 mb-4">
+                <a href="https://github.com/larsgimse" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-slate-200/60 dark:bg-slate-800/60 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 text-slate-800 dark:text-slate-200 transition-all border border-slate-300/50 dark:border-slate-700/50 backdrop-blur-sm">
+                    <i class="fa-brands fa-github text-lg"></i>
+                    <span>GitHub Profil</span>
+                </a>
+                
+                <button id="themeToggle" aria-label="Bytt tema"
+                        class="p-2.5 text-sm rounded-full bg-slate-200/60 dark:bg-slate-800/60 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 text-slate-800 dark:text-slate-200 transition-all border border-slate-300/50 dark:border-slate-700/50 backdrop-blur-sm">
+                    <i id="themeIcon" class="fa-solid fa-sun text-lg text-amber-400"></i>
+                </button>
+            </div>
+
+            <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 font-light max-w-md mx-auto">
+                Lars Gimse
+            </p>
+        </header>
+
+        <!-- Projects Grid -->
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            
+            <!-- 1. Topptur -->
+            <a href="https://larsgimse.github.io/topptur/" target="_blank" rel="noopener noreferrer" 
+               class="card-glow group p-6 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-sky-500/50 dark:hover:border-sky-500/50 shadow-sm hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-xl group-hover:scale-110 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-mountain-sun"></i>
+                        </div>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">
+                            Fjell & Tur
+                        </span>
+                    </div>
+                    <h2 class="text-xl font-semibold mb-2 group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors flex items-center gap-2">
+                        Topptur
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </h2>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Planlegging og oversikt over toppturer, ruter og fjellopplevelser.
+                    </p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-medium text-sky-600 dark:text-sky-400">
+                    <span>Åpne applikasjon</span>
+                    <i class="fa-solid fa-chevron-right ml-1 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+
+            <!-- 2. Concert / Konsert -->
+            <a href="https://larsgimse.github.io/concert/" target="_blank" rel="noopener noreferrer" 
+               class="card-glow group p-6 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-purple-500/50 dark:hover:border-purple-500/50 shadow-sm hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <!-- Concert Archives Animated GIF -> pil -> Visualiseringslogo -->
+                        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/80 border border-slate-800 text-purple-400 group-hover:border-purple-500/50 transition-all duration-300">
+                            <img src="https://www.concertarchives.org/img/concert-archives-logo-animated.gif" alt="Concert Archives" class="h-5 w-auto object-contain">
+                            <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+                            <i class="fa-solid fa-earth-americas text-base" title="Konsertkart"></i>
+                        </div>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
+                            Musikk
+                        </span>
+                    </div>
+                    <h2 class="text-xl font-semibold mb-2 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors flex items-center gap-2">
+                        Konsert
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </h2>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Et verktøy der du kan visualisere konserter du har registrert på <span class="underline decoration-purple-500/50">concertarchives.org</span>.
+                    </p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-medium text-purple-600 dark:text-purple-400">
+                    <span>Åpne applikasjon</span>
+                    <i class="fa-solid fa-chevron-right ml-1 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+
+            <!-- 3. Mine Konserter -->
+            <a href="https://larsgimse.github.io/concert/gimse/" target="_blank" rel="noopener noreferrer" 
+               class="card-glow group p-6 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-pink-500/50 dark:hover:border-pink-500/50 shadow-sm hover:shadow-xl hover:shadow-pink-500/5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <!-- Concert Archives Animated GIF -> pil -> Personlig kartlogo -->
+                        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/80 border border-slate-800 text-pink-400 group-hover:border-pink-500/50 transition-all duration-300">
+                            <img src="https://www.concertarchives.org/img/concert-archives-logo-animated.gif" alt="Concert Archives" class="h-5 w-auto object-contain">
+                            <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-pink-400 transition-colors"></i>
+                            <i class="fa-solid fa-map-location-dot text-base" title="Mine Konserter Kart"></i>
+                        </div>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-pink-500/10 text-pink-600 dark:text-pink-400 border border-pink-500/20">
+                            Personlig
+                        </span>
+                    </div>
+                    <h2 class="text-xl font-semibold mb-2 group-hover:text-pink-500 dark:group-hover:text-pink-400 transition-colors flex items-center gap-2">
+                        Mine Konserter
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </h2>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Personlig visualisering og interaktivt kart over alle mine registrerte konserter.
+                    </p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-medium text-pink-600 dark:text-pink-400">
+                    <span>Åpne side</span>
+                    <i class="fa-solid fa-chevron-right ml-1 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+
+            <!-- 4. GPX Visualizer -->
+            <a href="https://larsgimse.github.io/gpx/" target="_blank" rel="noopener noreferrer" 
+               class="card-glow group p-6 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 shadow-sm hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-xl group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                            Kart & Analyse
+                        </span>
+                    </div>
+                    <h2 class="text-xl font-semibold mb-2 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors flex items-center gap-2">
+                        GPX Visualizer
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </h2>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Interaktiv visualisering og detaljert analyse av GPX-spor, datalogg og turer.
+                    </p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                    <span>Åpne applikasjon</span>
+                    <i class="fa-solid fa-chevron-right ml-1 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+
+            <!-- 5. GPX Enkel -->
+            <a href="https://larsgimse.github.io/gpx/enkel/" target="_blank" rel="noopener noreferrer" 
+               class="card-glow group p-6 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-amber-500/50 dark:hover:border-amber-500/50 shadow-sm hover:shadow-xl hover:shadow-amber-500/5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-xl group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                            Hurtigvisning
+                        </span>
+                    </div>
+                    <h2 class="text-xl font-semibold mb-2 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors flex items-center gap-2">
+                        GPX Enkel
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </h2>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Rask og stilren visning av GPX-filer uten overflødige funksjoner.
+                    </p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-medium text-amber-600 dark:text-amber-400">
+                    <span>Åpne applikasjon</span>
+                    <i class="fa-solid fa-chevron-right ml-1 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-16 text-center text-xs text-slate-500 dark:text-slate-500">
+            <p>© <span id="year"></span> Lars Gimse. Laget med fokus på ytelse og enkelhet.</p>
+        </footer>
+
+    </div>
+
+    <!-- Script for Theme Toggle & Dynamic Year -->
+    <script>
+        // Set dynamic current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Dark / Light Mode Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+
+        // Check system preferences or previous setting
+        if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            htmlElement.classList.remove('dark');
+            themeIcon.className = 'fa-solid fa-moon text-lg text-slate-700';
+        } else {
+            htmlElement.classList.add('dark');
+            themeIcon.className = 'fa-solid fa-sun text-lg text-amber-400';
+        }
+
+        // Toggle button listener
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon text-lg text-slate-700';
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg text-amber-400';
+            }
+        });
+    </script>
+</body>
+</html>
