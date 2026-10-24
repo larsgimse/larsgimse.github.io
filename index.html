@@ -95,8 +95,7 @@
         <main class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
             
             <!-- 1. Topptur -->
-            <a href="https://larsgimse.github.io/topptur/" target="_blank" rel="noopener noreferrer" 
-               class="card-glow group p-6 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-sky-500/50 dark:hover:border-sky-500/50 shadow-sm hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md">
+            <div class="card-glow group p-6 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-sky-500/50 dark:hover:border-sky-500/50 shadow-sm hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md">
                 <div>
                     <div class="flex items-center justify-between mb-4">
                         <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-xl group-hover:scale-110 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
@@ -106,19 +105,44 @@
                             Fjell & Tur
                         </span>
                     </div>
-                    <h2 class="text-xl font-semibold mb-2 group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors flex items-center gap-2">
-                        Topptur
-                        <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                    <!-- Miniatyrbilde -->
+                    <div class="mb-4 overflow-hidden rounded-xl border border-slate-700/50 bg-slate-950/50 aspect-video shadow-inner">
+                        <img src="bilde_nordlys_220726.png" alt="Nordlys artikkel miniatyrbilde" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+
+                    <h2 class="text-xl font-semibold mb-2 transition-colors flex items-center gap-2">
+                        <a href="https://larsgimse.github.io/topptur/" target="_blank" rel="noopener noreferrer" class="hover:text-sky-500 dark:hover:text-sky-400 flex items-center gap-2">
+                            Topptur
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                        </a>
                     </h2>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                         Planlegging og oversikt over toppturer, ruter og fjellopplevelser.
                     </p>
+
+                    <!-- Nordlys & PDF Lenker -->
+                    <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-slate-200/50 dark:border-slate-800/80">
+                        <a href="https://www.nordlys.no/tidligere-barfot-eventyreren-gimse-deler-sine-fjell-jeg-har-et-dokumentasjonsbehov/s/5-34-2362324" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-500/20 border border-red-500/20 transition-all">
+                            <i class="fa-solid fa-newspaper"></i>
+                            <span>Nordlys (22.07.26)</span>
+                        </a>
+                        <button onclick="openPdfModal('https://larsgimse.github.io/nordlys_220726.pdf')"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-sky-500/10 text-sky-600 dark:text-sky-400 hover:bg-sky-500/20 border border-sky-500/20 transition-all cursor-pointer">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <span>Les PDF</span>
+                        </button>
+                    </div>
                 </div>
+
                 <div class="mt-6 flex items-center text-xs font-medium text-sky-600 dark:text-sky-400">
-                    <span>Åpne applikasjon</span>
-                    <i class="fa-solid fa-chevron-right ml-1 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    <a href="https://larsgimse.github.io/topptur/" target="_blank" rel="noopener noreferrer" class="flex items-center hover:underline">
+                        <span>Åpne applikasjon</span>
+                        <i class="fa-solid fa-chevron-right ml-1 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </a>
                 </div>
-            </a>
+            </div>
 
             <!-- 2. Oversiktskart (Alle turer) -->
             <a href="https://larsgimse.github.io/topptur/oversikt.html" target="_blank" rel="noopener noreferrer" 
@@ -132,6 +156,12 @@
                             Oversiktskart
                         </span>
                     </div>
+
+                    <!-- Miniatyrbilde av oversiktskartet -->
+                    <div class="mb-4 overflow-hidden rounded-xl border border-slate-700/50 bg-slate-950/50 aspect-video shadow-inner">
+                        <img src="http://larsgimse.github.io/oversikt.png" alt="Oversiktskart miniatyrbilde" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+
                     <h2 class="text-xl font-semibold mb-2 group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors flex items-center gap-2">
                         Oversiktskart (Alle turer)
                         <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
@@ -151,7 +181,6 @@
                class="card-glow group p-6 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-purple-500/50 dark:hover:border-purple-500/50 shadow-sm hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <!-- Concert Archives Animated GIF -> pil -> Visualiseringslogo -->
                         <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/80 border border-slate-800 text-purple-400 group-hover:border-purple-500/50 transition-all duration-300">
                             <img src="https://www.concertarchives.org/img/concert-archives-logo-animated.gif" alt="Concert Archives" class="h-5 w-auto object-contain">
                             <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-purple-400 transition-colors"></i>
@@ -180,7 +209,6 @@
                class="card-glow group p-6 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-pink-500/50 dark:hover:border-pink-500/50 shadow-sm hover:shadow-xl hover:shadow-pink-500/5 transition-all duration-300 flex flex-col justify-between backdrop-blur-md">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <!-- Concert Archives Animated GIF -> pil -> Personlig kartlogo -->
                         <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/80 border border-slate-800 text-pink-400 group-hover:border-pink-500/50 transition-all duration-300">
                             <img src="https://www.concertarchives.org/img/concert-archives-logo-animated.gif" alt="Concert Archives" class="h-5 w-auto object-contain">
                             <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-pink-400 transition-colors"></i>
@@ -265,7 +293,24 @@
 
     </div>
 
-    <!-- Script for Theme Toggle & Dynamic Year -->
+    <!-- PDF Modal / Pop-up Vindusvisning -->
+    <div id="pdfModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
+        <div class="relative w-full max-w-4xl h-[85vh] bg-slate-900 border border-slate-800 rounded-2xl flex flex-col overflow-hidden shadow-2xl">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950">
+                <h3 class="text-base font-semibold text-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf text-sky-500"></i> Nordlys-artikkel (22.07.2026)
+                </h3>
+                <button onclick="closePdfModal()" aria-label="Lukk" class="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="flex-grow w-full bg-slate-950">
+                <iframe id="pdfIframe" src="" class="w-full h-full border-0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for Theme Toggle, Dynamic Year & PDF Modal -->
     <script>
         // Set dynamic current year
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -275,7 +320,6 @@
         const themeIcon = document.getElementById('themeIcon');
         const htmlElement = document.documentElement;
 
-        // Check system preferences or previous setting
         if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
             htmlElement.classList.remove('dark');
             themeIcon.className = 'fa-solid fa-moon text-lg text-slate-700';
@@ -284,7 +328,6 @@
             themeIcon.className = 'fa-solid fa-sun text-lg text-amber-400';
         }
 
-        // Toggle button listener
         themeToggleBtn.addEventListener('click', () => {
             if (htmlElement.classList.contains('dark')) {
                 htmlElement.classList.remove('dark');
@@ -294,6 +337,37 @@
                 htmlElement.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
                 themeIcon.className = 'fa-solid fa-sun text-lg text-amber-400';
+            }
+        });
+
+        // PDF Modal Logic
+        function openPdfModal(url) {
+            const modal = document.getElementById('pdfModal');
+            const iframe = document.getElementById('pdfIframe');
+            iframe.src = url;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closePdfModal() {
+            const modal = document.getElementById('pdfModal');
+            const iframe = document.getElementById('pdfIframe');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            iframe.src = '';
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePdfModal();
+            }
+        });
+
+        // Close modal when clicking outside the modal box
+        document.getElementById('pdfModal').addEventListener('click', (e) => {
+            if (e.target.id === 'pdfModal') {
+                closePdfModal();
             }
         });
     </script>
