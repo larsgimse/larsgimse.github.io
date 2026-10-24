@@ -68,12 +68,12 @@
         
         <!-- Header Section -->
         <header class="text-center mb-12 md:mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
                 Lars Gimse
             </h1>
             
             <!-- Social / GitHub Links & Theme Toggle -->
-            <div class="flex items-center justify-center gap-4 mb-4">
+            <div class="flex items-center justify-center gap-4">
                 <a href="https://github.com/larsgimse" target="_blank" rel="noopener noreferrer" 
                    class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-slate-200/60 dark:bg-slate-800/60 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 text-slate-800 dark:text-slate-200 transition-all border border-slate-300/50 dark:border-slate-700/50 backdrop-blur-sm">
                     <i class="fa-brands fa-github text-lg"></i>
@@ -85,10 +85,6 @@
                     <i id="themeIcon" class="fa-solid fa-sun text-lg text-amber-400"></i>
                 </button>
             </div>
-
-            <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 font-light max-w-md mx-auto">
-                Lars Gimse
-            </p>
         </header>
 
         <!-- Projects Grid -->
@@ -106,9 +102,11 @@
                         </span>
                     </div>
 
-                    <!-- Miniatyrbilde -->
+                    <!-- Miniatyrbilde med lenke -->
                     <div class="mb-4 overflow-hidden rounded-xl border border-slate-700/50 bg-slate-950/50 aspect-video shadow-inner">
-                        <img src="bilde_nordlys_220726.png" alt="Nordlys artikkel miniatyrbilde" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <a href="https://larsgimse.github.io/topptur/" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                            <img src="bilde_nordlys_220726.png" alt="Nordlys artikkel miniatyrbilde" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </a>
                     </div>
 
                     <h2 class="text-xl font-semibold mb-2 transition-colors flex items-center gap-2">
@@ -118,7 +116,7 @@
                         </a>
                     </h2>
                     <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                        Planlegging og oversikt over toppturer, ruter og fjellopplevelser.
+                        Toppturer om vinteren og fjellturer om sommeren.
                     </p>
 
                     <!-- Nordlys & PDF Lenker -->
@@ -286,8 +284,30 @@
 
         </main>
 
+        <!-- Ekstra små knapper nederst -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <!-- E-ink klokke -->
+            <a href="http://46.9.180.113:8080/klokke/" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-sky-500/50 dark:hover:border-sky-500/50 text-slate-800 dark:text-slate-200 transition-all backdrop-blur-md shadow-sm hover:shadow-md">
+                <i class="fa-solid fa-clock text-sky-500"></i>
+                <i class="fa-solid fa-cloud-sun text-amber-500"></i>
+                <i class="fa-solid fa-plane text-indigo-400"></i>
+                <span>E-ink klokke (5 dagers vær og flydata fra Tromsø)</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"></i>
+            </a>
+
+            <!-- Wilters-cam -->
+            <a href="http://46.9.180.113" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-xl bg-white/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-orange-500/50 dark:hover:border-orange-500/50 text-slate-800 dark:text-slate-200 transition-all backdrop-blur-md shadow-sm hover:shadow-md">
+                <i class="fa-solid fa-cat text-orange-500"></i>
+                <i class="fa-solid fa-bowl-food text-amber-600"></i>
+                <span>Wilters-cam</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"></i>
+            </a>
+        </div>
+
         <!-- Footer -->
-        <footer class="mt-16 text-center text-xs text-slate-500 dark:text-slate-500">
+        <footer class="mt-12 text-center text-xs text-slate-500 dark:text-slate-500">
             <p>© <span id="year"></span> Lars Gimse. Laget med fokus på ytelse og enkelhet.</p>
         </footer>
 
