@@ -20,10 +20,12 @@ body {
 svg { fill:none; stroke:currentColor; stroke-width:1; stroke-linecap:round; stroke-linejoin:round; }
 
 .outline {
-    position:fixed; top:-16px; right:0; height:calc(100vh + 32px); aspect-ratio:800/1546;
-    color:var(--ink); opacity:.22; pointer-events:none; z-index:0;
+    position:fixed; top:16px; right:16px; height:auto;
+    width:min(calc((100vw - 700px) / 2), 52vh); aspect-ratio:800/1546;
+    color:var(--ink); opacity:.3; pointer-events:none; z-index:0;
     transition:color .5s ease, opacity .5s ease;
 }
+@media (max-width:940px) { .outline { display:none; } }
 main { position:relative; z-index:1; width:100%; max-width:640px; padding:0 28px; display:flex; flex-direction:column; }
 h1 { margin:0 0 10px; font-size:clamp(40px,9vw,60px); font-weight:200; letter-spacing:-.02em; line-height:1; }
 .sub { margin:0 0 48px; color:var(--muted); font-size:16px; }
@@ -98,7 +100,6 @@ body:has(.r8:hover) .outline,body:has(.r8:focus-within) .outline{color:#b0673f;o
     .row .ico { width:38px; height:38px; }
     .row .ico.tall { width:20px; margin:0 9px; }
     .feature .thumb { width:104px; }
-    .outline { right:-190px; opacity:.16; }
 }
 @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
 </style>
