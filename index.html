@@ -24,7 +24,8 @@ svg { fill:none; stroke:currentColor; stroke-width:1; stroke-linecap:round; stro
     position:absolute; top:-16px; right:calc(var(--og) - 295px);
     height:570px; aspect-ratio:800/1546;
     color:var(--ink); opacity:.55; pointer-events:none; z-index:2;
-    transition:color .5s ease, opacity .5s ease;
+    fill:transparent;
+    transition:color .5s ease, fill .5s ease, opacity .5s ease;
 }
 main { position:relative; width:100%; max-width:880px; padding:0 28px; display:flex; flex-direction:column; }
 h1 { margin:0 0 10px; font-size:clamp(40px,9vw,60px); font-weight:200; letter-spacing:-.02em; line-height:1; }
@@ -67,7 +68,8 @@ nav { border-top:1px solid var(--ink); }
 /* Vinter-/sommerknapper i Topptur-raden: samme stil som sidene i topptur/ (tynn ramme, Jost, linjeikoner, fargetone ved hover) */
 .feature { flex-wrap:wrap; }
 .feature .txt { flex:1 1 0; }
-.tours { flex:none; display:flex; flex-direction:column; gap:8px; }
+.feature .name a::after { content:""; position:absolute; inset:0; z-index:1; }
+.tours { position:relative; z-index:3; flex:none; display:flex; flex-direction:column; gap:8px; }
 .feature { align-items:center; }
 .feature .chips { position:absolute; right:4px; top:50%; transform:translateY(-50%); z-index:3; margin:0; flex-direction:column; align-items:flex-end; }
 .feature .chip { background:#fff; box-shadow:0 0 0 3px #fff; }
@@ -83,21 +85,21 @@ nav { border-top:1px solid var(--ink); }
 .tour.sommer:hover, .tour.sommer:focus-visible { background:#f2e8cf; color:#9a7a2e; border-color:#9a7a2e; outline:none; }
 
 .r1{--bg:#dce8f1;--tone:#4a7391}
-body:has(.r1:hover) .outline,body:has(.r1:focus-within) .outline{color:#4a7391;opacity:.9}
+body:has(.r1:hover) .outline,body:has(.r1:focus-within) .outline{color:#4a7391;fill:#dce8f1;opacity:.9}
 .r2{--bg:#d9ebe5;--tone:#3f7a6c}
-body:has(.r2:hover) .outline,body:has(.r2:focus-within) .outline{color:#3f7a6c;opacity:.9}
+body:has(.r2:hover) .outline,body:has(.r2:focus-within) .outline{color:#3f7a6c;fill:#d9ebe5;opacity:.9}
 .r3{--bg:#e5e0f0;--tone:#6b5c94}
-body:has(.r3:hover) .outline,body:has(.r3:focus-within) .outline{color:#6b5c94;opacity:.9}
+body:has(.r3:hover) .outline,body:has(.r3:focus-within) .outline{color:#6b5c94;fill:#e5e0f0;opacity:.9}
 .r4{--bg:#f1dfe4;--tone:#a0566d}
-body:has(.r4:hover) .outline,body:has(.r4:focus-within) .outline{color:#a0566d;opacity:.9}
+body:has(.r4:hover) .outline,body:has(.r4:focus-within) .outline{color:#a0566d;fill:#f1dfe4;opacity:.9}
 .r5{--bg:#e4ecd6;--tone:#5f7f3b}
-body:has(.r5:hover) .outline,body:has(.r5:focus-within) .outline{color:#5f7f3b;opacity:.9}
+body:has(.r5:hover) .outline,body:has(.r5:focus-within) .outline{color:#5f7f3b;fill:#e4ecd6;opacity:.9}
 .r6{--bg:#f2e8cf;--tone:#9a7a2e}
-body:has(.r6:hover) .outline,body:has(.r6:focus-within) .outline{color:#9a7a2e;opacity:.9}
+body:has(.r6:hover) .outline,body:has(.r6:focus-within) .outline{color:#9a7a2e;fill:#f2e8cf;opacity:.9}
 .r7{--bg:#dfe3f0;--tone:#56639a}
-body:has(.r7:hover) .outline,body:has(.r7:focus-within) .outline{color:#56639a;opacity:.9}
+body:has(.r7:hover) .outline,body:has(.r7:focus-within) .outline{color:#56639a;fill:#dfe3f0;opacity:.9}
 .r8{--bg:#f4e0d3;--tone:#b0673f}
-body:has(.r8:hover) .outline,body:has(.r8:focus-within) .outline{color:#b0673f;opacity:.9}
+body:has(.r8:hover) .outline,body:has(.r8:focus-within) .outline{color:#b0673f;fill:#f4e0d3;opacity:.9}
 
 .foot { padding-top:36px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; font-size:13px; color:var(--muted); }
 .foot a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); }
