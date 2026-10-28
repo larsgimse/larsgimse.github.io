@@ -69,7 +69,9 @@ nav { border-top:1px solid var(--ink); }
 .feature .txt { flex:1 1 0; }
 .tours { flex:none; display:flex; flex-direction:column; gap:8px; }
 .feature { align-items:center; }
-.feature .chips { flex:none; margin:0 0 0 auto; flex-direction:column; align-items:flex-end; }
+.feature .chips { position:absolute; right:4px; top:50%; transform:translateY(-50%); z-index:3; margin:0; flex-direction:column; align-items:flex-end; }
+.feature .chip { background:#fff; box-shadow:0 0 0 3px #fff; }
+.feature .chip:hover, .feature .chip:focus-visible { background:var(--ink); }
 .tour {
     display:flex; box-shadow:0 0 0 3px #fff; align-items:center; gap:8px; min-width:104px; padding:6px 14px 6px 10px;
     color:var(--ink); text-decoration:none; background:#fff; border:1px solid var(--ink);
@@ -119,7 +121,6 @@ body:has(.r8:hover) .outline,body:has(.r8:focus-within) .outline{color:#b0673f;o
     .row { gap:16px; }
     .row .ico { width:38px; height:38px; }
     .row .ico.tall { width:20px; margin:0 9px; }
-    .feature .chips { flex-basis:100%; flex-direction:row; align-items:center; margin:0; }
     .tour { min-width:0; padding:5px 10px 5px 8px; gap:6px; }
     .tour svg { width:16px; height:16px; }
     .tour b { font-size:14px; }
