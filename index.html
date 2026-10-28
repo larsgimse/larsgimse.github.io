@@ -67,7 +67,9 @@ nav { border-top:1px solid var(--ink); }
 /* Vinter-/sommerknapper i Topptur-raden: samme stil som sidene i topptur/ (tynn ramme, Jost, linjeikoner, fargetone ved hover) */
 .feature { flex-wrap:wrap; }
 .feature .txt { flex:1 1 0; }
-.tours { position:absolute; right:4px; top:50%; transform:translateY(-50%); z-index:3; display:flex; flex-direction:column; gap:8px; }
+.tours { flex:none; display:flex; flex-direction:column; gap:8px; }
+.feature { align-items:center; }
+.feature .chips { flex:none; margin:0 0 0 auto; flex-direction:column; align-items:flex-end; }
 .tour {
     display:flex; box-shadow:0 0 0 3px #fff; align-items:center; gap:8px; min-width:104px; padding:6px 14px 6px 10px;
     color:var(--ink); text-decoration:none; background:#fff; border:1px solid var(--ink);
@@ -117,7 +119,7 @@ body:has(.r8:hover) .outline,body:has(.r8:focus-within) .outline{color:#b0673f;o
     .row { gap:16px; }
     .row .ico { width:38px; height:38px; }
     .row .ico.tall { width:20px; margin:0 9px; }
-    .feature .thumb { width:92px; }
+    .feature .chips { flex-basis:100%; flex-direction:row; align-items:center; margin:0; }
     .tour { min-width:0; padding:5px 10px 5px 8px; gap:6px; }
     .tour svg { width:16px; height:16px; }
     .tour b { font-size:14px; }
@@ -141,36 +143,6 @@ body:has(.r8:hover) .outline,body:has(.r8:focus-within) .outline{color:#b0673f;o
 
     <nav>
         <div class="row feature r1">
-            <a class="thumb" href="https://larsgimse.github.io/topptur/" target="_blank" rel="noopener noreferrer" aria-label="Åpne Toppturer">
-                <svg class="mini" viewBox="0 0 160 120" aria-hidden="true">
-                    <rect x=".5" y=".5" width="159" height="119" fill="#fff" stroke="none"/>
-                    <use href="#tromso" x="104" y="-3" width="62" height="120" style="opacity:.45;stroke-width:.8"/>
-                    <text x="10" y="27" font-size="15" font-weight="200" fill="#000" stroke="none" letter-spacing="-.3">Toppturer</text>
-                    <text x="10" y="37" font-size="6" fill="#6b6b6b" stroke="none">Vinter og sommer rundt Tromsø</text>
-                    <path d="M0 47.5h160M0 69.5h160M0 91.5h160M0 113.5h160" stroke="#000" stroke-width=".6"/>
-                    <g transform="translate(19 58.5) scale(.22) translate(-22 -22)" stroke-width="4.5">
-                        <use href="#arm"/><use href="#arm" transform="rotate(60 22 22)"/><use href="#arm" transform="rotate(120 22 22)"/><use href="#arm" transform="rotate(180 22 22)"/><use href="#arm" transform="rotate(240 22 22)"/><use href="#arm" transform="rotate(300 22 22)"/>
-                    </g>
-                    <text x="34" y="58" font-size="7" fill="#000" stroke="none">Toppturer vinter</text>
-                    <text x="34" y="65.5" font-size="4.8" fill="#6b6b6b" stroke="none">Ski og skredfare</text>
-                    <g transform="translate(19 80.5) scale(.22) translate(-22 -22)" stroke-width="4.5">
-                        <circle cx="22" cy="22" r="7"/><path d="M22 4v6M22 34v6M4 22h6M34 22h6M9.3 9.3l4.2 4.2M30.5 30.5l4.2 4.2M9.3 34.7l4.2-4.2M30.5 13.5l4.2-4.2"/>
-                    </g>
-                    <text x="34" y="80" font-size="7" fill="#000" stroke="none">Fjellturer sommer</text>
-                    <text x="34" y="87.5" font-size="4.8" fill="#6b6b6b" stroke="none">Stier og utsikt</text>
-                    <use href="#tromso" x="14.7" y="94.5" width="8.6" height="16.6" stroke-width="1"/>
-                    <text x="34" y="102" font-size="7" fill="#000" stroke="none">Oversikt turer</text>
-                    <text x="34" y="109.5" font-size="4.8" fill="#6b6b6b" stroke="none">Alle turene på kartet</text>
-                </svg>
-            </a>
-            <span class="txt">
-                <span class="name"><a href="https://larsgimse.github.io/topptur/" target="_blank" rel="noopener noreferrer">Toppturer</a></span>
-                <span class="desc">Vinter og sommer rundt Tromsø</span>
-                <span class="chips">
-                    <a class="chip" href="https://www.nordlys.no/tidligere-barfot-eventyreren-gimse-deler-sine-fjell-jeg-har-et-dokumentasjonsbehov/s/5-34-2362324" target="_blank" rel="noopener noreferrer">Nordlys 22.07.26</a>
-                    <button class="chip" type="button" onclick="openPdfModal('https://larsgimse.github.io/nordlys_220726.pdf')">Les PDF</button>
-                </span>
-            </span>
             <span class="tours">
                 <a class="tour vinter" href="https://larsgimse.github.io/topptur/vinter.html" target="_blank" rel="noopener noreferrer" aria-label="Toppturer vinter">
                     <svg viewBox="0 0 44 44" aria-hidden="true"><use href="#arm"/><use href="#arm" transform="rotate(60 22 22)"/><use href="#arm" transform="rotate(120 22 22)"/><use href="#arm" transform="rotate(180 22 22)"/><use href="#arm" transform="rotate(240 22 22)"/><use href="#arm" transform="rotate(300 22 22)"/></svg>
@@ -181,6 +153,14 @@ body:has(.r8:hover) .outline,body:has(.r8:focus-within) .outline{color:#b0673f;o
                     <b>Sommer</b>
                 </a>
             </span>
+            <span class="txt">
+                <span class="name"><a href="https://larsgimse.github.io/topptur/" target="_blank" rel="noopener noreferrer">Toppturer</a></span>
+                <span class="desc">Vinter og sommer rundt Tromsø</span>
+            </span>
+                <span class="chips">
+                    <a class="chip" href="https://www.nordlys.no/tidligere-barfot-eventyreren-gimse-deler-sine-fjell-jeg-har-et-dokumentasjonsbehov/s/5-34-2362324" target="_blank" rel="noopener noreferrer">Nordlys 22.07.26</a>
+                    <button class="chip" type="button" onclick="openPdfModal('https://larsgimse.github.io/nordlys_220726.pdf')">Les PDF</button>
+                </span>
         </div>
 
         <a href="https://larsgimse.github.io/topptur/oversikt.html" target="_blank" rel="noopener noreferrer" class="row r2">
