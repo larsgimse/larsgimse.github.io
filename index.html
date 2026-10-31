@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
-:root { --ink:#000; --paper:#fff; --muted:#6b6b6b; --og:295px; }
+:root { --ink:#000; --paper:#fff; --muted:#6b6b6b; --og:295px; --map-bg:#ededeb; }
 * { box-sizing:border-box; }
 html, body { margin:0; }
 body {
@@ -100,6 +100,8 @@ body:has(.r6:hover) .outline,body:has(.r6:focus-within) .outline{color:#9a7a2e;f
 body:has(.r7:hover) .outline,body:has(.r7:focus-within) .outline{color:#56639a;fill:#dfe3f0;opacity:.9}
 .r8{--bg:#f4e0d3;--tone:#b0673f}
 body:has(.r8:hover) .outline,body:has(.r8:focus-within) .outline{color:#b0673f;fill:#f4e0d3;opacity:.9}
+.r9{--bg:#e8e1da;--tone:#7a6552}
+body:has(.r9:hover) .outline,body:has(.r9:focus-within) .outline{color:#7a6552;fill:#e8e1da;opacity:.9}
 
 .foot { padding-top:36px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; font-size:13px; color:var(--muted); }
 .foot a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); }
@@ -127,6 +129,15 @@ body:has(.r8:hover) .outline,body:has(.r8:focus-within) .outline{color:#b0673f;f
     .tour svg { width:16px; height:16px; }
     .tour b { font-size:14px; }
 }
+.lang {
+    position: relative; z-index: 3; align-self: flex-start; margin: 0 0 28px;
+    display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px;
+    border: 1px solid var(--ink); border-radius: 0; background: var(--paper); color: var(--ink);
+    font: inherit; font-size: 14px; font-weight: 400; cursor: pointer; transition: background .3s ease;
+}
+.lang svg { width: 17px; height: 17px; flex: none; }
+.lang:hover, .lang:focus-visible { background: var(--map-bg); outline: none; }
+.lang-code { letter-spacing: .04em; }
 @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
 </style>
 </head>
@@ -140,6 +151,7 @@ body:has(.r8:hover) .outline,body:has(.r8:focus-within) .outline{color:#b0673f;f
 </svg>
 
 <main>
+    <button id="langBtn" type="button" class="lang" title="Switch to English" aria-label="Switch to English"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg><span class="lang-code">EN</span></button>
     <svg class="outline" viewBox="0 0 800 1546" aria-hidden="true"><use href="#tromso"/></svg>
     <h1>Lars Gimse</h1>
     <p class="sub">Prosjekter</p>
@@ -169,6 +181,12 @@ body:has(.r8:hover) .outline,body:has(.r8:focus-within) .outline{color:#b0673f;f
         <a href="https://larsgimse.github.io/topptur/oversikt.html" target="_blank" rel="noopener noreferrer" class="row r2">
             <svg class="ico tall" viewBox="0 0 800 1546" aria-hidden="true"><use href="#tromso"/></svg>
             <span class="txt"><span class="name">Oversiktskart</span><span class="desc">Interaktivt oversiktskart som viser samtlige registrerte turer og ruter samlet på ett sted.</span></span>
+            <svg class="go" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14L14 6M7 6h7v7"/></svg>
+        </a>
+
+        <a href="https://larsgimse.github.io/topropesolo" target="_blank" rel="noopener noreferrer" class="row r9">
+            <svg class="ico" viewBox="0 0 44 44" aria-hidden="true"><rect x="13" y="4" width="18" height="30" rx="9" transform="rotate(18 22 19)"/><path d="M17.5 14.5l9 11.5"/><path d="M22 34v3c0 2.2 1.8 4 4 4h5"/></svg>
+            <span class="txt"><span class="name">Top Rope Solo - Tromsø</span><span class="desc">En samling av steder rundt Tromsø som egner seg for Top Rope Solo (alene-klatring med topptau), med oversikt over stedene og video.</span></span>
             <svg class="go" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14L14 6M7 6h7v7"/></svg>
         </a>
 
@@ -231,5 +249,168 @@ function closePdfModal() { modal.classList.remove('open'); frame.src = ''; }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closePdfModal(); });
 modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); });
 </script>
+    <script>
+/* ===== SPRÅKBRYTER NO / EN (innebygd; ingen eksterne filer) =====
+   Norsk er originalspråket. Engelsk legges på av denne modulen:
+   - eksakte tekster slås opp i ORDBOK
+   - tekster med tall/variabler oversettes av REGLER
+   - valgt språk huskes i localStorage («lang») og deles mellom sidene
+   Mangler en tekst i ORDBOK, vises den på norsk. Legg den til nedenfor. */
+(function () {
+    'use strict';
+
+    var ORDBOK = {
+        "Lars Gimse — Prosjekter": "Lars Gimse — Projects",
+        "Prosjekter": "Projects",
+        "Toppturer": "Summit trips",
+        "Toppturer vinter": "Summit trips winter",
+        "Fjellturer sommer": "Mountain hikes summer",
+        "Vinter": "Winter",
+        "Sommer": "Summer",
+        "Vinter og sommer rundt Tromsø": "Winter and summer around Tromsø",
+        "Les PDF": "Read PDF",
+        "Oversiktskart": "Overview map",
+        "Interaktivt oversiktskart som viser samtlige registrerte turer og ruter samlet på ett sted.": "Interactive overview map showing all registered tours and routes in one place.",
+        "Top Rope Solo - Tromsø": "Top Rope Solo - Tromsø",
+        "En samling av steder rundt Tromsø som egner seg for Top Rope Solo (alene-klatring med topptau), med oversikt over stedene og video.": "A collection of places around Tromsø suited for Top Rope Solo (solo climbing on a top rope), with an overview of the spots and video.",
+        "Konsert": "Concerts",
+        "Visualiser konserter du har registrert på concertarchives.org.": "Visualize the concerts you have registered on concertarchives.org.",
+        "Mine konserter": "My concerts",
+        "Personlig visualisering og interaktivt kart over alle mine registrerte konserter.": "Personal visualization and interactive map of all my registered concerts.",
+        "Interaktiv visualisering og detaljert analyse av GPX-spor, datalogg og turer.": "Interactive visualization and detailed analysis of GPX tracks, data logs and trips.",
+        "GPX Enkel": "GPX Simple",
+        "Rask og stilren visning av GPX-filer uten overflødige funksjoner.": "Quick, clean display of GPX files without unnecessary features.",
+        "E-ink klokke": "E-ink clock",
+        "5 dagers vær og flydata fra Tromsø.": "5-day weather and flight data from Tromsø.",
+        "Live kamera og oversikt.": "Live camera and overview.",
+        "GitHub-profil": "GitHub profile",
+        "Nordlys-artikkel (22.07.2026)": "Nordlys article (22 July 2026)",
+        "Nordlys-artikkel": "Nordlys article",
+        "Lukk ✕": "Close ✕",
+        "Lukk": "Close"
+    };
+
+    var REGLER = [];
+
+    function oversett(tekst) {
+        if (!tekst) return tekst;
+        var m = /^(\s*)([\s\S]*?)(\s*)$/.exec(tekst);
+        var kjerne = m[2];
+        if (!kjerne) return tekst;
+        if (Object.prototype.hasOwnProperty.call(ORDBOK, kjerne)) return m[1] + ORDBOK[kjerne] + m[3];
+        var ut = kjerne;
+        for (var i = 0; i < REGLER.length; i++) ut = ut.replace(REGLER[i][0], REGLER[i][1]);
+        return ut === kjerne ? tekst : m[1] + ut + m[3];
+    }
+
+    var lang = 'no';
+    try {
+        var url = new URLSearchParams(location.search).get('lang');
+        var lagret = localStorage.getItem('lang');
+        lang = (url === 'en' || url === 'no') ? url : (lagret === 'en' ? 'en' : 'no');
+    } catch (_) { var u2 = /[?&]lang=en/.test(location.search); lang = u2 ? 'en' : 'no'; }
+
+    var tekstMinne = new WeakMap();   // tekstnode  -> {no, en}
+    var attrMinne = new WeakMap();    // element    -> { attr: {no, en} }
+    var ATTR = ['title', 'placeholder', 'aria-label', 'alt'];
+    var hopp = { SCRIPT: 1, STYLE: 1, TEXTAREA: 1, NOSCRIPT: 1 };
+    var observer = null;
+
+    function tekstNode(n) {
+        var p = n.parentNode;
+        if (p && hopp[p.nodeName]) return;
+        var rec = tekstMinne.get(n), cur = n.nodeValue;
+        if (rec && cur === rec.en) { if (lang === 'no') n.nodeValue = rec.no; return; }
+        if (lang === 'en') {
+            var en = oversett(cur);
+            if (en !== cur) { tekstMinne.set(n, { no: cur, en: en }); n.nodeValue = en; }
+            else tekstMinne.delete(n);
+        } else tekstMinne.delete(n);
+    }
+
+    function attributter(el) {
+        if (!el.getAttribute) return;
+        var rek = attrMinne.get(el);
+        for (var i = 0; i < ATTR.length; i++) {
+            var a = ATTR[i];
+            if (!el.hasAttribute(a)) continue;
+            var cur = el.getAttribute(a), r = rek && rek[a];
+            if (r && cur === r.en) { if (lang === 'no') el.setAttribute(a, r.no); continue; }
+            if (lang === 'en') {
+                var en = oversett(cur);
+                if (en !== cur) {
+                    if (!rek) { rek = {}; attrMinne.set(el, rek); }
+                    rek[a] = { no: cur, en: en };
+                    el.setAttribute(a, en);
+                } else if (rek) delete rek[a];
+            } else if (rek) delete rek[a];
+        }
+    }
+
+    function gjennom(rot) {
+        if (!rot) return;
+        if (rot.nodeType === 3) { tekstNode(rot); return; }
+        if (rot.nodeType !== 1 && rot.nodeType !== 9 && rot.nodeType !== 11) return;
+        if (rot.nodeType === 1) { if (hopp[rot.nodeName]) return; attributter(rot); }
+        var tw = document.createTreeWalker(rot, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, null);
+        var n;
+        while ((n = tw.nextNode())) {
+            if (n.nodeType === 3) tekstNode(n); else if (!hopp[n.nodeName]) attributter(n);
+        }
+    }
+
+    function start() {
+        if (observer) return;
+        observer = new MutationObserver(function (muts) {
+            for (var i = 0; i < muts.length; i++) {
+                var m = muts[i];
+                if (m.type === 'characterData') tekstNode(m.target);
+                else if (m.type === 'attributes') attributter(m.target);
+                else for (var j = 0; j < m.addedNodes.length; j++) gjennom(m.addedNodes[j]);
+            }
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTR });
+    }
+
+    /* alert() og prompt() er ikke DOM, så de pakkes inn */
+    var _alert = window.alert, _prompt = window.prompt;
+    window.alert = function (m) { return _alert.call(window, lang === 'en' ? oversett(String(m)) : m); };
+    window.prompt = function (m, d) { return _prompt.call(window, lang === 'en' ? oversett(String(m)) : m, d); };
+
+    function oppdaterKnapp() {
+        var b = document.getElementById('langBtn');
+        if (!b) return;
+        var kode = b.querySelector('.lang-code');
+        if (kode) kode.textContent = lang === 'en' ? 'NO' : 'EN';
+        b.setAttribute('aria-label', lang === 'en' ? 'Bytt til norsk' : 'Switch to English');
+        b.setAttribute('title', lang === 'en' ? 'Bytt til norsk' : 'Switch to English');
+    }
+
+    function sett(nytt) {
+        lang = nytt;
+        try { localStorage.setItem('lang', lang); } catch (_) {}
+        document.documentElement.lang = lang === 'en' ? 'en' : 'no';
+        if (observer) observer.disconnect();
+        gjennom(document.documentElement);
+        observer = null; start();
+        oppdaterKnapp();
+        try { document.dispatchEvent(new CustomEvent('langchange', { detail: lang })); } catch (_) {}
+    }
+
+    window.__lang = function () { return lang; };
+    window.__oversett = oversett;
+    window.__setLang = sett;
+
+    function init() {
+        var b = document.getElementById('langBtn');
+        if (b) b.addEventListener('click', function () { sett(lang === 'en' ? 'no' : 'en'); });
+        document.documentElement.lang = lang === 'en' ? 'en' : 'no';
+        if (lang === 'en') gjennom(document.documentElement);
+        start();
+        oppdaterKnapp();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+    </script>
 </body>
 </html>
