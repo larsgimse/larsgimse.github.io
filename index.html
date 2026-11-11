@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lars Gimse — Prosjekter</title>
+<title>Toppturer — Vinter og sommer rundt Tromsø</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
@@ -89,7 +89,7 @@ nav { position:relative;border-top:1px solid var(--ink); }
     letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
 }
 .project-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px; }
-/* Instagram: eitt prosjektkort med tre separate, tydelege lenkjer. */
+/* Instagram / YouTube: eitt prosjektkort med separate, tydelege lenkjer. */
 .instagram-card .card-main { flex:0 0 auto; padding-bottom:9px; }
 .ig-links { display:flex; flex-direction:column; gap:6px; padding:0 18px 16px; }
 .ig-links a {
@@ -101,6 +101,12 @@ nav { position:relative;border-top:1px solid var(--ink); }
 .ig-links a span { min-width:0; overflow-wrap:anywhere; }
 .ig-links a svg { flex:none; width:13px; height:13px; }
 .ig-links a:hover,.ig-links a:focus-visible { background:var(--ink); color:#fff; outline:1px solid var(--ink);outline-offset:2px; }
+/* Nøkternt YouTube-symbol i den eksisterande lenkelista. */
+.ig-links .youtube-link { margin-top:4px; }
+.card-top.social-card-icons { justify-content:flex-start; gap:12px; }
+.ig-links .yt-info,.ig-links .ig-info { display:inline-flex; align-items:center; gap:7px; min-width:0; }
+.ig-links .yt-icon,.ig-links .ig-icon { width:17px; height:17px; flex:none; stroke-width:1.35; }
+.ig-links .yt-icon path { fill:currentColor; stroke:none; }
 /* Tre likt breie knappar over same totale bredde som dei to-kolonna rutene. */
 .bottom-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:28px; }
 .bottom-grid .card-main { padding:15px 13px 12px; gap:7px; }
@@ -208,7 +214,8 @@ nav { position:relative;border-top:1px solid var(--ink); }
     .bottom-grid .pdf-small { font-size:10px; padding:4px 5px; }
     .ig-links { padding:0 11px 12px; }
     .ig-links a { font-size:10px; padding:7px 5px; }
-    .ig-links a svg { display:none; }
+    .ig-links a > svg { display:none; } /* Skjul berre utpil, ikkje sosiale ikon */
+    .ig-links .ig-icon,.ig-links .yt-icon { width:14px; height:14px; }
     .beta { right:4px;padding:4px 8px;font-size:11px; }
 }
 @media (prefers-reduced-motion:reduce) { * { transition:none!important; } }
@@ -225,8 +232,8 @@ nav { position:relative;border-top:1px solid var(--ink); }
   <header class="hero">
     <button aria-label="Switch to English" class="lang" id="langBtn" title="Switch to English" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"></path></svg><span class="lang-code">EN</span></button>
     <svg class="outline" viewBox="0 0 800 1546" aria-hidden="true"><use href="#tromso"/></svg>
-    <h1>Lars Gimse</h1>
-    <p class="sub">Prosjekter</p>
+    <h1>Toppturer</h1>
+    <p class="sub">Vinter og sommer rundt Tromsø</p>
     <nav aria-label="Fjellturer og oversiktskart">
 <div class="wrap">
 <a class="row winter" href="https://larsgimse.github.io/topptur/vinter.html" rel="noopener noreferrer" target="_blank">
@@ -258,20 +265,25 @@ nav { position:relative;border-top:1px solid var(--ink); }
     <div class="project-grid">
 <article class="project-card r2 instagram-card">
   <div class="card-main">
-    <span class="card-top">
+    <span class="card-top social-card-icons">
       <svg class="card-ico" viewBox="0 0 44 44" aria-hidden="true">
         <rect x="7" y="7" width="30" height="30" rx="8"/>
         <circle cx="22" cy="22" r="7"/>
         <circle cx="31" cy="13.5" r="1.4" fill="currentColor" stroke="none"/>
       </svg>
+      <svg class="card-ico" viewBox="0 0 44 44" aria-hidden="true">
+        <rect x="5" y="11" width="34" height="22" rx="7"/>
+        <path d="M19 17.5l9 4.5-9 4.5z" fill="currentColor" stroke="none"/>
+      </svg>
     </span>
-    <span class="card-name">Instagram</span>
-    <span class="card-desc">Mine tre Instagram-kontoer</span>
+    <span class="card-name">Instagram og YouTube</span>
+    <span class="card-desc">Tre Instagram-kontoer og én YouTube-kanal</span>
   </div>
-  <div class="ig-links" aria-label="Instagram-kontoer">
-    <a href="https://www.instagram.com/barfotgimse/" target="_blank" rel="noopener noreferrer" aria-label="Instagram: barfotgimse"><span>@barfotgimse</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14L14 6M7 6h7v7"/></svg></a>
-    <a href="https://www.instagram.com/arcticwindsurfer" target="_blank" rel="noopener noreferrer" aria-label="Instagram: arcticwindsurfer"><span>@arcticwindsurfer</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14L14 6M7 6h7v7"/></svg></a>
-    <a href="https://www.instagram.com/rope.solo.man" target="_blank" rel="noopener noreferrer" aria-label="Instagram: rope.solo.man"><span>@rope.solo.man</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14L14 6M7 6h7v7"/></svg></a>
+  <div class="ig-links" aria-label="Instagram- og YouTube-lenker">
+    <a href="https://www.instagram.com/barfotgimse/" target="_blank" rel="noopener noreferrer" aria-label="Instagram: barfotgimse"><span class="ig-info"><svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg><span>@barfotgimse</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14L14 6M7 6h7v7"/></svg></a>
+    <a href="https://www.instagram.com/arcticwindsurfer" target="_blank" rel="noopener noreferrer" aria-label="Instagram: arcticwindsurfer"><span class="ig-info"><svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg><span>@arcticwindsurfer</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14L14 6M7 6h7v7"/></svg></a>
+    <a href="https://www.instagram.com/rope.solo.man" target="_blank" rel="noopener noreferrer" aria-label="Instagram: rope.solo.man"><span class="ig-info"><svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg><span>@rope.solo.man</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14L14 6M7 6h7v7"/></svg></a>
+    <a class="youtube-link" href="https://www.youtube.com/@ArcticWindsurfer/" target="_blank" rel="noopener noreferrer" aria-label="YouTube: Arctic Windsurfer"><span class="yt-info"><svg class="yt-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.25" width="19" height="13.5" rx="4"/><path d="M10 9l5 3-5 3z"/></svg><span>YouTube - Arctic Windsurfer</span></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14L14 6M7 6h7v7"/></svg></a>
   </div>
 </article>
 <article class="project-card r9">
@@ -374,10 +386,14 @@ modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); 
         "Fjellturer og oversiktskart": "Mountain hikes and overview map",
         "Andre prosjekter": "Other projects",
         "Mine tre Instagram-kontoer": "My three Instagram accounts",
+        "Instagram og YouTube": "Instagram and YouTube",
         "Instagram-kontoer": "Instagram accounts",
+        "Instagram- og YouTube-lenker": "Instagram and YouTube links",
+        "Tre Instagram-kontoer og én YouTube-kanal": "Three Instagram accounts and one YouTube channel",
         "Øvrige prosjekter": "Other projects",
         "Artikkel om fjellturene og prosjektene mine.": "An article about my mountain trips and projects.",
         "Lars Gimse — Prosjekter": "Lars Gimse — Projects",
+        "Toppturer — Vinter og sommer rundt Tromsø": "Summit trips — Winter and summer around Tromsø",
         "Prosjekter": "Projects",
         "Toppturer": "Summit trips",
         "Toppturer vinter": "Summit trips winter",
