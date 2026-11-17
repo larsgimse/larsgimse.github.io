@@ -219,14 +219,6 @@ nav { position:relative;border-top:1px solid var(--ink); }
     .beta { right:4px;padding:4px 8px;font-size:11px; }
 }
 @media (prefers-reduced-motion:reduce) { * { transition:none!important; } }
-
-/* Kompakt beta-lenke under oversiktskartet */
-.beta-overview { display:flex; align-items:center; justify-content:space-between; gap:12px;
-  min-height:36px; padding:8px 12px; border-bottom:1px solid var(--ink);
-  color:var(--ink); text-decoration:none; font-size:14px; line-height:1.35;
-  background:var(--paper); transition:background .2s ease, padding-left .2s ease; }
-.beta-overview:hover, .beta-overview:focus-visible { background:var(--map-bg); padding-left:18px; outline:none; }
-.beta-go { font-size:15px; flex-shrink:0; opacity:.65; }
 </style>
 </head>
 <body>
@@ -240,7 +232,7 @@ nav { position:relative;border-top:1px solid var(--ink); }
   <header class="hero">
     <button aria-label="Switch to English" class="lang" id="langBtn" title="Switch to English" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"></path></svg><span class="lang-code">EN</span></button>
     <svg class="outline" viewBox="0 0 800 1546" aria-hidden="true"><use href="#tromso"/></svg>
-    <h1>Fjellturer</h1>
+    <h1>Toppturer</h1>
     <p class="sub">Vinter og sommer rundt Tromsø</p>
     <nav aria-label="Fjellturer og oversiktskart">
 <div class="wrap">
@@ -253,6 +245,7 @@ nav { position:relative;border-top:1px solid var(--ink); }
 </svg>
 <span class="txt"><span class="name">Toppturer vinter</span><span class="desc">Ski og skredfare</span></span>
 </a>
+<a class="beta" href="https://larsgimse.github.io/topptur/beta_vinter.html" id="betaBtn" rel="noopener noreferrer" target="_blank"><span>Prøv 🧰 GPX-lab</span></a>
 </div>
 <a class="row summer" href="https://larsgimse.github.io/topptur/sommer.html" rel="noopener noreferrer" target="_blank">
 <svg aria-hidden="true" class="ico" viewbox="0 0 44 44">
@@ -265,7 +258,6 @@ nav { position:relative;border-top:1px solid var(--ink); }
 <svg aria-hidden="true" class="ico tall" viewbox="0 0 800 1546"><use href="#tromso"></use></svg>
 <span class="txt"><span class="name">Oversikt turer</span><span class="desc">Alle turene på kartet</span></span>
 </a>
-<a id="betaBtn" class="beta-overview" href="https://larsgimse.github.io/topptur/beta_topptur.html" target="_blank" rel="noopener noreferrer"><span>Fjellturer - vinter &amp; sommer (Beta)</span><span class="beta-go" aria-hidden="true">↗</span></a>
 </nav>
   </header>
   <section class="projects" aria-label="Andre prosjekter">
@@ -390,6 +382,7 @@ modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); 
         "Stier og utsikt": "Trails and views",
         "Oversikt turer": "Trip overview",
         "Alle turene på kartet": "All trips on the map",
+        "Prøv 🧰 GPX-lab": "Try 🧰 GPX Lab",
         "Fjellturer og oversiktskart": "Mountain hikes and overview map",
         "Andre prosjekter": "Other projects",
         "Mine tre Instagram-kontoer": "My three Instagram accounts",
@@ -403,8 +396,6 @@ modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); 
         "Toppturer — Vinter og sommer rundt Tromsø": "Summit trips — Winter and summer around Tromsø",
         "Prosjekter": "Projects",
         "Toppturer": "Summit trips",
-        "Fjellturer": "Mountain hikes",
-        "Fjellturer - vinter & sommer (Beta)": "Mountain hikes - winter & summer (Beta)",
         "Toppturer vinter": "Summit trips winter",
         "Fjellturer sommer": "Mountain hikes summer",
         "Vinter": "Winter",
@@ -557,7 +548,7 @@ modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); 
 <script>(function () {
     var btn = document.getElementById('betaBtn');
     if (btn) btn.addEventListener('click', function () {
-        try { btn.href = 'https://larsgimse.github.io/topptur/beta_topptur.html?lang=' + (window.__lang ? window.__lang() : 'no'); } catch (e) {}
+        try { btn.href = 'https://larsgimse.github.io/topptur/beta_vinter.html?lang=' + (window.__lang ? window.__lang() : 'no'); } catch (e) {}
     });
 })();</script>
 </body>
