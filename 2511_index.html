@@ -541,7 +541,6 @@ modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); 
 
     window.__lang = function () { return lang; };
     window.__oversett = oversett;
-    window.__mergeTourTranslations = function (entries) { Object.keys(entries).forEach(function (key) { ORDBOK[key] = entries[key]; }); };
     window.__setLang = sett;
 
     function init() {
@@ -555,67 +554,11 @@ modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
     </script>
-<script>
-/* Fjellturer: topptur/index.html er hovedkilden. Lokal meny er reserve. */
-(function () {
-    'use strict';
-    const source = 'https://larsgimse.github.io/topptur/index.html';
-    const hero = document.querySelector('main > header.hero');
-    // Behold språkvalg også når menyen er hentet på nytt.
-    hero.addEventListener('click', function (event) {
-        const link = event.target.closest('nav a[href]');
-        if (!link) return;
-        const url = new URL(link.href);
-        if (url.origin === new URL(source).origin && url.pathname.startsWith('/topptur/')) {
-            url.searchParams.set('lang', window.__lang ? window.__lang() : 'no');
-            link.href = url.href;
-        }
+<script>(function () {
+    var btn = document.getElementById('betaBtn');
+    if (btn) btn.addEventListener('click', function () {
+        try { btn.href = 'https://larsgimse.github.io/topptur/beta_topptur.html?lang=' + (window.__lang ? window.__lang() : 'no'); } catch (e) {}
     });
-    async function syncTours() {
-        try {
-            const response = await fetch(source, {cache: 'no-cache', credentials: 'omit'});
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
-            const main = doc.querySelector('main');
-            if (!main) throw new Error('Mangler main');
-            const selectors = ['h1', '.sub', 'nav'];
-            const items = selectors.map(selector => main.querySelector(selector));
-            if (items.some(item => !item) || !items[2].querySelector('a[href]')) throw new Error('Ukjent menystruktur');
-            // Importer bare innhold, ikke kildefilens JavaScript, teller eller footer.
-            const copies = items.map(item => {
-                const copy = document.importNode(item, true);
-                copy.querySelectorAll('script, iframe, object, embed, style, link, base').forEach(el => el.remove());
-                [copy, ...copy.querySelectorAll('*')].forEach(el => {
-                    [...el.attributes].forEach(attr => { if (/^on/i.test(attr.name)) el.removeAttribute(attr.name); });
-                });
-                copy.querySelectorAll('a[href]').forEach(a => {
-                    const href = new URL(a.getAttribute('href'), response.url || source);
-                    if (!['https:', 'http:'].includes(href.protocol)) { a.removeAttribute('href'); return; }
-                    a.href = href.href;
-                    a.target = '_blank'; a.rel = 'noopener noreferrer';
-                });
-                return copy;
-            });
-            copies[2].setAttribute('aria-label', 'Fjellturer og oversiktskart');
-            // Les enkle ordlistepar fra hovedkilden, uten å kjøre ekstern kode.
-            const translations = Object.create(null);
-            for (const script of doc.querySelectorAll('script:not([src])')) {
-                const block = script.textContent.match(/var\s+ORDBOK\s*=\s*\{([\s\S]*?)\n\s*\};/);
-                if (!block) continue;
-                const pairs = /(?:^|\n)\s*(['"])([^'"\n]+)\1\s*:\s*(['"])([^'"\n]+)\3\s*,?/g;
-                for (const match of block[1].matchAll(pairs)) translations[match[2]] = match[4];
-            }
-            if (window.__mergeTourTranslations) window.__mergeTourTranslations(translations);
-            selectors.forEach((selector, i) => hero.querySelector(selector).replaceWith(copies[i]));
-            if (window.__setLang) window.__setLang(window.__lang());
-        } catch (error) {
-            // Ved nettverksfeil / CORS beholdes den fungerende lokale turmenyen.
-            console.warn('Fjellturer: bruker lokal reservemeny.', error);
-        }
-    }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncTours, {once: true});
-    else syncTours();
-})();
-</script>
+})();</script>
 </body>
 </html>
