@@ -582,6 +582,26 @@ modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); 
     });
 })();</script>
 <script>
+window.fetchTourFile = async function(file) {
+    const roots = [
+        'https://larsgimse.github.io/topptur/',
+        'https://raw.githubusercontent.com/larsgimse/topptur/HEAD/',
+        'https://raw.githubusercontent.com/larsgimse/topptur/main/',
+        'https://raw.githubusercontent.com/larsgimse/topptur/master/'
+    ];
+    let lastError;
+    for (const root of roots) {
+        try {
+            const url = new URL(file, root);
+            url.searchParams.set('_sync', Date.now());
+            const response = await fetch(url, {cache:'no-store', mode:'cors', credentials:'omit', signal:AbortSignal.timeout(5000)});
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            return response;
+        } catch (err) { lastError = err; }
+    }
+    throw lastError;
+};
+
 (function () {
     const base = 'https://larsgimse.github.io/topptur/';
     const sources = { winter: 'vinter_topper.json', summer: 'sommer_topper.json' };
@@ -597,7 +617,8 @@ modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); 
                 if (!m) continue;
                 const date = `${m[1]}-${m[2]}-${m[3]}`;
                 if (Number.isNaN(Date.parse(date))) continue;
-                const key = file.toLowerCase();
+                // Samme topp og dato er én tur, også når den har flere GPX-delspor.
+                const key = JSON.stringify([String(topp.id || topp.navn).toLowerCase(), date]);
                 if (!found.has(key)) found.set(key, {file, date, id:topp.id || topp.navn, name:topp.navn || topp.id});
             }
         }
@@ -608,7 +629,8 @@ modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); 
         const labels = en ? ['Newest track','Second newest track','Third newest track'] : ['Nyeste spor','Nest nyeste spor','Tredje nyeste spor'];
         document.querySelectorAll('.recent-dots').forEach(el => {
             const season = el.dataset.season;
-            const items = (results[season] || []).slice(0,3);
+            if (!Object.prototype.hasOwnProperty.call(results, season)) return;
+            const items = results[season].slice(0,3);
             el.replaceChildren();
             items.forEach((item,i) => {
                 const dot = document.createElement('span');
@@ -632,7 +654,7 @@ modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); 
     document.addEventListener('tour-nav-updated', render);
     Object.entries(sources).forEach(async ([season,file]) => {
         try {
-            const response = await fetch(new URL(file,base), {cache:'no-cache'});
+            const response = await window.fetchTourFile(file);
             if (!response.ok) throw new Error(response.status);
             results[season] = collect(await response.json());
             render();
@@ -655,7 +677,7 @@ document.addEventListener('click', function(event) {
 (async function () {
     const source = 'https://larsgimse.github.io/topptur/index.html';
     try {
-        const response = await fetch(source, {cache:'no-cache', mode:'cors', credentials:'omit'});
+        const response = await window.fetchTourFile('index.html');
         if (!response.ok) throw new Error('HTTP ' + response.status);
         const remote = new DOMParser().parseFromString(await response.text(), 'text/html');
         const nav = remote.querySelector('#shared-tour-nav') || remote.querySelector('main nav');
@@ -676,8 +698,10 @@ document.addEventListener('click', function(event) {
             const node = remote.getElementById(id) || remote.querySelector(selector);
             if (node) document.getElementById(id).textContent = node.textContent;
         }
+        current.dataset.sync = 'remote';
         document.dispatchEvent(new Event('tour-nav-updated'));
     } catch (error) {
+        document.querySelector('#shared-tour-nav').dataset.sync = 'fallback';
         console.warn('Kunne ikke hente felles turmeny; bruker reserveversjonen.', error);
     }
 })();
